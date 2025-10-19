@@ -1,11 +1,11 @@
 return {
-  "NeogitOrg/neogit",
+  'NeogitOrg/neogit',
   dependencies = {
-    "nvim-lua/plenary.nvim",         -- required
-    "sindrets/diffview.nvim",        -- optional - Diff integration
-    "nvim-telescope/telescope.nvim", 
+    'nvim-lua/plenary.nvim', -- required
+    'sindrets/diffview.nvim', -- optional - Diff integration
+    'nvim-telescope/telescope.nvim',
   },
   keys = {
-	  { '<leader>ng', '<cmd>Neogit<cr>', desc = 'Neogit' }
-  }
+    { '<leader>ng', '<cmd>Neogit<cr>', desc = 'Neogit' },
+  },
 }

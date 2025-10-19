@@ -1,1 +1,5 @@
 require 'mofu.lazy'
+require 'mofu.lsp'
+require 'mofu.set'
+require 'mofu.autocmd'
+require 'mofu.keymap'
