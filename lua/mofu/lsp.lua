@@ -83,3 +83,67 @@ vim.api.nvim_create_autocmd('LspAttach', {
     )
   end,
 })
+
+-- Debugger Config
+
+local dap = require 'dap'
+require('dapui').setup()
+local dapui = require 'dapui'
+dapui.setup()
+
+dap.listeners.before.attach.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.launch.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated.dapui_config = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited.dapui_config = function()
+  dapui.close()
+end
+
+dap.adapters.cppdbg = {
+  id = 'cppdbg',
+  type = 'executable',
+  command = vim.fn.stdpath 'data' .. '\\mason\\bin\\OpenDebugAD7.cmd',
+  options = {
+    detached = false,
+  },
+}
+
+dap.configurations.cpp = {
+  {
+    name = 'Launch file',
+    type = 'cppdbg',
+    request = 'launch',
+    program = function()
+      return vim.fn.input(
+        'Path to executable: ',
+        vim.fn.getcwd() .. '\\',
+        'file'
+      )
+    end,
+    cwd = '${workspaceFolder}',
+    stopAtEntry = true,
+  },
+  --[[{
+    name = 'Attach to gdbserver :1234',
+    type = 'cppdbg',
+    request = 'launch',
+    MIMode = 'gdb',
+    miDebuggerServerAddress = 'localhost:1234',
+    miDebuggerPath = 'C:\\ProgramData\\mingw64\\mingw64\\bin\\gdb',
+    cwd = '${workspaceFolder}',
+    program = function()
+      return vim.fn.input(
+        'Path to executable: ',
+        vim.fn.getcwd() .. '/',
+        'file'
+      )
+    end,
+  },--]]
+}
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp

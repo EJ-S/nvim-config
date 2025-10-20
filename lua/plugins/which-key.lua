@@ -6,6 +6,9 @@ return {
     spec = {
       { '<leader>s', group = '[S]earch' },
       { '<leader>n', group = '[N]eogit' },
+      { '<leader>t', group = '[T]oggle' },
+      { '<leader>h', group = 'Git [H]unk' },
+      { '<leader>d', group = '[D]ebug' },
     },
   },
   keys = {
