@@ -1,5 +1,14 @@
 vim.lsp.enable 'clangd'
 vim.lsp.enable 'lua_ls'
+vim.lsp.config('zls', {
+  settings = {
+    zls = {
+      semantic_tokens = 'partial', -- Neovim allows for basic syntax highlighting
+      enable_build_on_save = true,
+    },
+  },
+})
+vim.lsp.enable 'zls'
 
 vim.diagnostic.config {
   severity_sort = true,
